@@ -39,3 +39,48 @@ test("on clicking button, count display increments", () => {
   console.log(displayComponent.debug());
   expect(displayComponent.text()).toContain("8");
 });
+
+test("renders a decrement button ", () => {
+  const wrapper = setUp(App);
+  const button = fetchComponent(wrapper, "component-app-button-decrement");
+  expect(button.length).toBe(1);
+});
+test("on clicking decrement button, count display increments", () => {
+  const wrapper = setUp(App, { count: 7 });
+  const button = fetchComponent(wrapper, "component-app-button-decrement");
+  button.simulate("click");
+  const displayComponent = fetchComponent(wrapper, "component-app-display");
+  console.log(displayComponent.debug());
+  expect(displayComponent.text()).toContain("6");
+});
+test("on clicking decrement button, count display increments", () => {
+  const wrapper = setUp(App, { count: 0 });
+  const button = fetchComponent(wrapper, "component-app-button-decrement");
+  button.simulate("click");
+  const displayComponent = fetchComponent(wrapper, "component-app-display");
+  console.log(displayComponent.debug());
+  expect(displayComponent.text()).toContain("0");
+});
+test("on clicking decrement button when count is 0, error message is displayed", () => {
+  const wrapper = setUp(App, { count: 0 });
+  const button = fetchComponent(wrapper, "component-app-button-decrement");
+  button.simulate("click");
+  const displayComponent = fetchComponent(
+    wrapper,
+    "component-app-display-error"
+  );
+  console.log(displayComponent.debug());
+  expect(displayComponent.text().length).toBeGreaterThan(0);
+});
+
+test("on clicking increment button when error is displayed, error is cleared", () => {
+  const wrapper = setUp(App, { count: 0, error: "Cannot decrement counter" });
+  const button = fetchComponent(wrapper, "component-app-button");
+  button.simulate("click");
+  const displayComponent = fetchComponent(
+    wrapper,
+    "component-app-display-error"
+  );
+  console.log(displayComponent.debug());
+  expect(displayComponent.text().length).toBe(0);
+});
