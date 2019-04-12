@@ -6,10 +6,10 @@ Simple app to learn how to use enzyme and jest for testing.
 
 Enzyme is a tool that builds a virtual DOM for testing without a browser. It can
 
-*Search DOM with jQuery selectors.  
-*Simulate events like button clicks.
-*Shallow render - only render top-most component.
-*Update and test values of props and state
+   * Search DOM with jQuery selectors.  
+   * Simulate events like button clicks.
+   * Shallow render - only render top-most component.
+   * Update and test values of props and state
 
 See (https://airbnb.io/enzyme/)
 
